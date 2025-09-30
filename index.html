@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blissful Brides - Premium Bridal Makeup</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f9f0ff 0%, #f0e6ff 100%);
+            color: #333;
+            min-height: 100vh;
+            padding-bottom: 40px;
+        }
+
+        header {
+            background: linear-gradient(to right, #d4a9e8, #b57edc);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .logo i {
+            font-size: 2.5rem;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            font-weight: 300;
+            margin-top: 10px;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #8a4baf;
+            font-size: 2rem;
+            font-weight: 400;
+            position: relative;
+        }
+
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: #b57edc;
+            margin: 10px auto;
+        }
+
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-image {
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .card:hover .card-image img {
+            transform: scale(1.05);
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-title {
+            font-size: 1.4rem;
+            color: #8a4baf;
+            margin-bottom: 10px;
+        }
+
+        .card-price {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #e91e63;
+            margin-bottom: 15px;
+        }
+
+        .card-description {
+            color: #666;
+            line-height: 1.5;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+
+        .card-features {
+            list-style: none;
+            margin-bottom: 15px;
+        }
+
+        .card-features li {
+            padding: 5px 0;
+            color: #555;
+            font-size: 0.9rem;
+        }
+
+        .card-features li i {
+            color: #b57edc;
+            margin-right: 8px;
+        }
+
+        .card-button {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(to right, #d4a9e8, #b57edc);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .card-button:hover {
+            background: linear-gradient(to right, #b57edc, #a56cc1);
+            box-shadow: 0 4px 12px rgba(181, 126, 220, 0.3);
+        }
+
+        /* Detail Page Styles */
+        .detail-page {
+            display: none;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            margin-top: 30px;
+        }
+
+        .detail-header {
+            position: relative;
+            height: 400px;
+            overflow: hidden;
+        }
+
+        .detail-header img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            color: #8a4baf;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .back-button:hover {
+            background: white;
+            transform: scale(1.05);
+        }
+
+        .detail-content {
+            padding: 30px;
+        }
+
+        .detail-title {
+            font-size: 2.2rem;
+            color: #8a4baf;
+            margin-bottom: 10px;
+        }
+
+        .detail-price {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #e91e63;
+            margin-bottom: 20px;
+        }
+
+        .detail-description {
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+        }
+
+        .detail-features {
+            margin-bottom: 30px;
+        }
+
+        .detail-features h3 {
+            color: #8a4baf;
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+        .detail-features ul {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .detail-features li {
+            padding: 10px 15px;
+            background: #f9f0ff;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .detail-features li i {
+            color: #b57edc;
+            margin-right: 10px;
+            font-size: 1.1rem;
+        }
+
+        .share-section {
+            background: #f9f0ff;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .share-title {
+            color: #8a4baf;
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+        }
+
+        .share-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .share-button {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 25px;
+            border-radius: 8px;
+            color: white;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .share-button.whatsapp {
+            background: #25D366;
+        }
+
+        .share-button.facebook {
+            background: #3b5998;
+        }
+
+        .share-button.twitter {
+            background: #1DA1F2;
+        }
+
+        .share-button.pinterest {
+            background: #E60023;
+        }
+
+        .share-button.email {
+            background: #666;
+        }
+
+        .share-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .share-button i {
+            font-size: 1.2rem;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            color: #8a4baf;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .cards-container {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 20px;
+            }
+            
+            .detail-header {
+                height: 300px;
+            }
+            
+            .detail-content {
+                padding: 20px;
+            }
+            
+            .detail-title {
+                font-size: 1.8rem;
+            }
+            
+            .share-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .share-button {
+                width: 100%;
+                max-width: 250px;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <i class="fas fa-gem"></i>
+            <h1>Blissful Brides</h1>
+        </div>
+        <p class="tagline">Premium Bridal Makeup Studio - Making Your Special Day Perfect</p>
+    </header>
+
+    <div class="container">
+        <h2 class="section-title">Our Bridal Makeup Collections</h2>
+        
+        <div class="cards-container" id="cardsContainer">
+            <!-- Cards will be generated by JavaScript -->
+        </div>
+
+        <div class="detail-page" id="detailPage">
+            <!-- Detail page content will be populated by JavaScript -->
+        </div>
+    </div>
+
+    <footer>
+        <p>Blissful Brides Makeup Studio &copy; 2025 | Crafting Gurushasta Innotech Since 2023</p>
+    </footer>
+
+    <script>
+        // Makeup packages data
+        const makeupPackages = [
+            {
+                id: 1,
+                title: "Classic Bride Package",
+                price: "$299",
+                image: "https://images.unsplash.com/photo-1511895426328-dc8714191300?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+                description: "Our signature bridal look with a timeless, elegant finish. Perfect for the traditional bride who wants to look naturally radiant.",
+                features: [
+                    "Airbrush foundation for flawless finish",
+                    "Professional false lash application",
+                    "Waterproof, long-lasting makeup",
+                    "Bridal trial session included",
+                    "Touch-up kit for the day"
+                ],
+                fullDescription: "The Classic Bride Package offers a timeless, elegant look that will make you feel like the most beautiful version of yourself. Our experienced artists use premium products to create a flawless complexion, defined eyes, and the perfect lip color that complements your skin tone. This package includes a pre-wedding trial session to ensure we capture your vision perfectly."
+            },
+            {
+                id: 2,
+                title: "Glamorous Bride Package",
+                price: "$399",
+                image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+                description: "For the bride who wants to make a statement. Bold eyes, contoured features, and a glamorous finish that photographs beautifully.",
+                features: [
+                    "Full coverage airbrush foundation",
+                    "Smokey eye or cut-crease application",
+                    "Professional contouring & highlighting",
+                    "Individual false lash application",
+                    "Bridal trial + engagement session"
+                ],
+                fullDescription: "The Glamorous Bride Package is designed for the modern bride who wants to make a statement. This look features enhanced contouring, defined eyes with either a smokey effect or a trendy cut-crease, and a bold lip that commands attention. Our artists will ensure your makeup not only looks incredible in person but photographs beautifully throughout your special day."
+            },
+            {
+                id: 3,
+                title: "Natural Beauty Package",
+                price: "$249",
+                image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+                description: "Enhance your natural features with this soft, romantic look. Perfect for outdoor or intimate weddings.",
+                features: [
+                    "Lightweight foundation for natural finish",
+                    "Soft, romantic eye makeup",
+                    "Defined brows and subtle contour",
+                    "Water-resistant formulas",
+                    "Bridal trial session included"
+                ],
+                fullDescription: "The Natural Beauty Package enhances your features while maintaining a fresh, dewy finish. This look is perfect for outdoor ceremonies, beach weddings, or intimate celebrations where you want to look like the best version of yourself. We use lightweight formulas that feel comfortable all day while providing enough coverage for beautiful photographs."
+            },
+            {
+                id: 4,
+                title: "Royal Treatment Package",
+                price: "$549",
+                image: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+                description: "Our most luxurious package with premium products, additional services, and dedicated artist for the entire day.",
+                features: [
+                    "Luxury skincare prep and primer",
+                    "Premium designer makeup products",
+                    "Dedicated artist for 8 hours",
+                    "Bridal party discounts (up to 4 people)",
+                    "Heirloom-quality makeup box"
+                ],
+                fullDescription: "The Royal Treatment Package is our most exclusive offering for the bride who wants nothing but the best. This comprehensive package begins with luxury skincare preparation, uses only premium designer makeup products, and includes a dedicated artist who will stay with you for up to 8 hours to ensure you look perfect from ceremony to reception. You'll also receive special discounts for your bridal party and a beautiful heirloom-quality makeup box to commemorate your special day."
+            },
+            {
+                id: 5,
+                title: "Boho Chic Package",
+                price: "$329",
+                image: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+                description: "Soft, ethereal makeup with a focus on glowing skin and romantic details. Perfect for rustic or outdoor weddings.",
+                features: [
+                    "Luminous, glowing skin finish",
+                    "Soft, blended eye makeup",
+                    "Freckle-friendly application",
+                    "Flower crown or hair accessory styling",
+                    "Bridal trial session included"
+                ],
+                fullDescription: "The Boho Chic Package creates a soft, ethereal look that's perfect for rustic barn weddings, beach ceremonies, or any celebration with a bohemian vibe. We focus on creating luminous, glowing skin and soft, blended eye makeup that enhances your natural beauty. This package is freckle-friendly and includes styling for flower crowns or other hair accessories to complete your boho bridal look."
+            }
+        ];
+
+        // DOM elements
+        const cardsContainer = document.getElementById('cardsContainer');
+        const detailPage = document.getElementById('detailPage');
+
+        // Function to generate cards
+        function generateCards() {
+            cardsContainer.innerHTML = '';
+            
+            makeupPackages.forEach(package => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.setAttribute('data-id', package.id);
+                
+                card.innerHTML = `
+                    <div class="card-image">
+                        <img src="${package.image}" alt="${package.title}">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">${package.title}</h3>
+                        <div class="card-price">${package.price}</div>
+                        <p class="card-description">${package.description}</p>
+                        <ul class="card-features">
+                            ${package.features.map(feature => `<li><i class="fas fa-check"></i>${feature}</li>`).join('')}
+                        </ul>
+                        <button class="card-button">View Details</button>
+                    </div>
+                `;
+                
+                cardsContainer.appendChild(card);
+                
+                // Add click event to card
+                card.addEventListener('click', () => showDetailPage(package.id));
+            });
+        }
+
+        // Function to show detail page
+        function showDetailPage(id) {
+            const package = makeupPackages.find(p => p.id === id);
+            
+            if (!package) return;
+            
+            detailPage.innerHTML = `
+                <div class="detail-header">
+                    <img src="${package.image}" alt="${package.title}">
+                    <button class="back-button" id="backButton">
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
+                </div>
+                <div class="detail-content">
+                    <h2 class="detail-title">${package.title}</h2>
+                    <div class="detail-price">${package.price}</div>
+                    <p class="detail-description">${package.fullDescription}</p>
+                    
+                    <div class="detail-features">
+                        <h3>Package Includes:</h3>
+                        <ul>
+                            ${package.features.map(feature => `<li><i class="fas fa-check"></i>${feature}</li>`).join('')}
+                        </ul>
+                    </div>
+                    
+                    <div class="share-section">
+                        <h3 class="share-title">Share This Package</h3>
+                        <div class="share-buttons">
+                            <button class="share-button whatsapp" data-platform="whatsapp">
+                                <i class="fab fa-whatsapp"></i> WhatsApp
+                            </button>
+                            <button class="share-button facebook" data-platform="facebook">
+                                <i class="fab fa-facebook-f"></i> Facebook
+                            </button>
+                            <button class="share-button twitter" data-platform="twitter">
+                                <i class="fab fa-twitter"></i> Twitter
+                            </button>
+                            <button class="share-button pinterest" data-platform="pinterest">
+                                <i class="fab fa-pinterest"></i> Pinterest
+                            </button>
+                            <button class="share-button email" data-platform="email">
+                                <i class="fas fa-envelope"></i> Email
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            // Show detail page and hide cards
+            cardsContainer.style.display = 'none';
+            detailPage.style.display = 'block';
+            
+            // Add event listener to back button
+            document.getElementById('backButton').addEventListener('click', showCardsPage);
+            
+            // Add event listeners to share buttons
+            document.querySelectorAll('.share-button').forEach(button => {
+                button.addEventListener('click', function() {
+                    sharePackage(package, this.getAttribute('data-platform'));
+                });
+            });
+        }
+
+        // Function to show cards page
+        function showCardsPage() {
+            cardsContainer.style.display = 'grid';
+            detailPage.style.display = 'none';
+        }
+
+        // Function to handle sharing
+        function sharePackage(package, platform) {
+            const shareText = `Check out this ${package.title} from Blissful Brides Makeup Studio! ${package.description}`;
+            const shareUrl = window.location.href.split('?')[0] + `?package=${package.id}`;
+            
+            let shareLink = '';
+            
+            switch(platform) {
+                case 'whatsapp':
+                    shareLink = `https://wa.me/?text=${encodeURIComponent(shareText + ' ' + shareUrl)}`;
+                    break;
+                case 'facebook':
+                    shareLink = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}&quote=${encodeURIComponent(shareText)}`;
+                    break;
+                case 'twitter':
+                    shareLink = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`;
+                    break;
+                case 'pinterest':
+                    shareLink = `https://pinterest.com/pin/create/button/?url=${encodeURIComponent(shareUrl)}&description=${encodeURIComponent(shareText)}&media=${encodeURIComponent(package.image)}`;
+                    break;
+                case 'email':
+                    shareLink = `mailto:?subject=${encodeURIComponent(package.title)}&body=${encodeURIComponent(shareText + ' ' + shareUrl)}`;
+                    break;
+            }
+            
+            if (shareLink) {
+                window.open(shareLink, '_blank', 'width=600,height=400');
+            }
+        }
+
+        // Initialize the page
+        function init() {
+            generateCards();
+            
+            // Check if there's a package ID in the URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const packageId = urlParams.get('package');
+            
+            if (packageId) {
+                showDetailPage(parseInt(packageId));
+            }
+        }
+
+        // Run initialization when DOM is loaded
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
